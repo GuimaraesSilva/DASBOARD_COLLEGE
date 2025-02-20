@@ -1,6 +1,7 @@
-version: "3.8"
+version: "3.9"
+
 services:
-  db:
+  postgres:
     image: postgres:latest
     container_name: dasboard_college_db
     environment:
@@ -8,15 +9,15 @@ services:
       POSTGRES_PASSWORD: code123456
       POSTGRES_DB: dasboard_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - prisma-network
+      - dasboard-network
 
 volumes:
   postgres_data:
 
 networks:
-  prisma-network:
+  dasboard-network:
     driver: bridge
