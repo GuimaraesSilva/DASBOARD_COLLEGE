@@ -2,16 +2,13 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { role, teachersData } from "@/lib/data";
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { Class, Subject, Teacher } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { ITEM_PER_PAGE } from "@/lib/settings";
-
-type TeacherProps = Teacher & { subjects: Subject[] } & { classes: Class[] };
-
+import { role } from "@/lib/utils";
 // type Teacher = {
 //   id: number;
 //   teacherId: string;
@@ -23,6 +20,8 @@ type TeacherProps = Teacher & { subjects: Subject[] } & { classes: Class[] };
 //   classes: string[];
 //   address: string;
 // };
+
+type TeacherProps = Teacher & { subjects: Subject[] } & { classes: Class[] };
 
 const columns = [
   {
@@ -54,10 +53,14 @@ const columns = [
     accessor: "address",
     className: "hidden lg:table-cell",
   },
-  {
-    header: "Actions",
-    accessor: "action",
-  },
+  ...(role === "admin"
+    ? [
+        {
+          header: "Actions",
+          accessor: "action",
+        },
+      ]
+    : []),
 ];
 const renderRow = (item: TeacherProps) => (
   <tr
