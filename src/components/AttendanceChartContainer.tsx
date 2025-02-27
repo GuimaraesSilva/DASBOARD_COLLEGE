@@ -1,6 +1,7 @@
-import Image from "next/image";
+
 import AttendanceChart from "./AttendanceChart";
 import prisma from "@/lib/prisma";
+import { TfiMoreAlt } from "react-icons/tfi";
 
 const AttendanceChartContainer = async () => {
   const today = new Date();
@@ -54,10 +55,10 @@ const AttendanceChartContainer = async () => {
   }));
 
   return (
-    <div className="bg-white rounded-lg p-4 h-full">
+    <div className="bg-tertiary rounded-lg p-4 h-full">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Attendance</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+        <h1 className="text-secondary text-lg font-semibold">Attendance</h1>
+        <TfiMoreAlt className="text-primary" />
       </div>
       <AttendanceChart data={data}/>
     </div>

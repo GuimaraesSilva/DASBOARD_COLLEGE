@@ -1,91 +1,110 @@
 import { currentUser } from "@clerk/nextjs/server";
-import Image from "next/image";
 import Link from "next/link";
+import { 
+  FaHome, 
+  FaChalkboardTeacher,
+  FaUser, 
+  FaUsers, 
+  FaUserTie, 
+  FaBook,
+  FaBookOpen, 
+  FaClipboard, 
+  FaGraduationCap, 
+  FaCalendarAlt, 
+  FaEnvelope, 
+  FaBullhorn ,
+} from 'react-icons/fa';
+import { 
+  FaChalkboard,
+  FaClipboardCheck,
+} from 'react-icons/fa';
+import { FiLogOut } from "react-icons/fi";
+import { FiSettings } from "react-icons/fi";
 
 const menuItems = [
   {
     title: "MENU",
     items: [
       {
-        icon: "/home.png",
+        icon: FaHome, 
         label: "Home",
         href: "/",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/teacher.png",
+        icon: FaChalkboardTeacher, 
         label: "Teachers",
         href: "/list/teachers",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/student.png",
+        icon: FaUsers, 
         label: "Students",
         href: "/list/students",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/parent.png",
+        icon: FaUserTie, 
         label: "Parents",
         href: "/list/parents",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/subject.png",
+        icon: FaBook, 
         label: "Subjects",
         href: "/list/subjects",
         visible: ["admin"],
       },
       {
-        icon: "/class.png",
+        icon: FaChalkboard, 
         label: "Classes",
         href: "/list/classes",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/lesson.png",
+        icon: FaBookOpen, 
         label: "Lessons",
         href: "/list/lessons",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/exam.png",
+        icon: FaGraduationCap, 
         label: "Exams",
         href: "/list/exams",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/assignment.png",
+        icon: FaClipboard, 
         label: "Assignments",
         href: "/list/assignments",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/result.png",
+        icon: FaGraduationCap, 
         label: "Results",
         href: "/list/results",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/attendance.png",
+        icon: FaClipboardCheck, 
         label: "Attendance",
         href: "/list/attendance",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/calendar.png",
+        icon: FaCalendarAlt, 
         label: "Events",
         href: "/list/events",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/message.png",
+        icon: FaEnvelope, 
         label: "Messages",
         href: "/list/messages",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/announcement.png",
+        icon: FaBullhorn, 
         label: "Announcements",
         href: "/list/announcements",
         visible: ["admin", "teacher", "student", "parent"],
@@ -96,19 +115,19 @@ const menuItems = [
     title: "OTHER",
     items: [
       {
-        icon: "/profile.png",
+        icon: FaUser, 
         label: "Profile",
         href: "/profile",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/setting.png",
+        icon: FiSettings, 
         label: "Settings",
         href: "/settings",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/logout.png",
+        icon: FiLogOut, 
         label: "Logout",
         href: "/logout",
         visible: ["admin", "teacher", "student", "parent"],
@@ -121,10 +140,10 @@ const Menu = async () => {
   const user = await currentUser();
   const role = user?.publicMetadata.role as string;
   return (
-    <div className="mt-4 text-sm">
+    <div className="mt-2 text-sm">
       {menuItems.map((i) => (
-        <div className="flex flex-col gap-2" key={i.title}>
-          <span className="hidden lg:block text-gray-400 font-light my-4">
+        <div className="flex flex-col gap-1" key={i.title}>
+          <span className="hidden lg:block text-white font-light my-4">
             {i.title}
           </span>
           {i.items.map((item) => {
@@ -133,9 +152,9 @@ const Menu = async () => {
                 <Link
                   href={item.href}
                   key={item.label}
-                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight"
+                  className="flex items-center justify-center lg:justify-start gap-4 text-white/60 py-2 md:px-2 rounded-md hover:bg-tertiary hover:text-primary"
                 >
-                  <Image src={item.icon} alt="" width={20} height={20} />
+                  <item.icon size={20} /> 
                   <span className="hidden lg:block">{item.label}</span>
                 </Link>
               );
