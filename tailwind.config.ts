@@ -27,9 +27,10 @@ const config: Config = {
         quaternary:"#ffffff",
         quinary:"#151b54",
         senary:"#0000ff",
+        septenary:"#f1f0ff",
         boys:"#295fb6",
         girls:"#a484bc",
-        others:"#FAE27C"
+        others:"#fae27c "
       },
     },
   },

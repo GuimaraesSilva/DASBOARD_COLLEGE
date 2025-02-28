@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { TfiMoreAlt } from "react-icons/tfi";
 import {
   LineChart,
   Line,
@@ -77,10 +78,10 @@ const data = [
 
 const FinanceChart = () => {
   return (
-    <div className="bg-white rounded-xl w-full h-full p-4">
+    <div className="bg-tertiary rounded-xl w-full h-full p-4">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Finance</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+        <h1 className="text-secondary text-lg font-semibold">Finance</h1>
+          <TfiMoreAlt className="text-primary" />
       </div>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
@@ -94,15 +95,15 @@ const FinanceChart = () => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#f1f0ff" />
           <XAxis
             dataKey="name"
             axisLine={false}
-            tick={{ fill: "#d1d5db" }}
+            tick={{ fill: "#889dc8" }}
             tickLine={false}
             tickMargin={10}
           />
-          <YAxis axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false}  tickMargin={20}/>
+          <YAxis axisLine={false} tick={{ fill: "#889dc8" }} tickLine={false}  tickMargin={20}/>
           <Tooltip />
           <Legend
             align="center"
@@ -112,10 +113,15 @@ const FinanceChart = () => {
           <Line
             type="monotone"
             dataKey="income"
-            stroke="#C3EBFA"
+            stroke="#151b54"
             strokeWidth={5}
           />
-          <Line type="monotone" dataKey="expense" stroke="#CFCEFF" strokeWidth={5}/>
+          <Line 
+            type="monotone" 
+            dataKey="expense" 
+            stroke="#a484bc" 
+            strokeWidth={5}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
