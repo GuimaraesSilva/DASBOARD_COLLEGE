@@ -29,7 +29,7 @@ const LoginPage = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/homepage_bg.jpg')" }}
       />
-      <div className="absolute inset-0 bg-blue-900/70"></div>
+      <div className="absolute inset-0 bg-black/50" />
       <div className="flex gap-4 relative z-10">
         <Image src="/logo.gif" alt="Logo" width={100} height={100} />
         <div className="flex flex-col-reverse">
@@ -44,7 +44,7 @@ const LoginPage = () => {
       </p>
     </div>
     {/* Right Section */}
-    <div className="w-1/2 flex items-center justify-center bg-blue-100">
+    <div className="w-1/2 flex items-center justify-center bg-[#997739]">
       <SignIn.Root>
         <SignIn.Step
           name="start"
