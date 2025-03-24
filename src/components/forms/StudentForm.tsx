@@ -20,7 +20,8 @@ import {
 } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-//import { CldUploadWidget } from "next-cloudinary";
+import { CldUploadWidget } from "next-cloudinary";
+
 
 const StudentForm = ({
   type,
@@ -104,7 +105,7 @@ const StudentForm = ({
       <span className="text-xs text-gray-400 font-medium">
         Personal Information
       </span>
-      {/* <CldUploadWidget
+      <CldUploadWidget
         uploadPreset="school"
         onSuccess={(result, { widget }) => {
           setImg(result.info);
@@ -122,7 +123,7 @@ const StudentForm = ({
             </div>
           );
         }}
-      </CldUploadWidget> */}
+      </CldUploadWidget>
       <div className="flex justify-between flex-wrap gap-4">
         <InputField
           label="First Name"
@@ -234,7 +235,7 @@ const StudentForm = ({
                 _count: { students: number };
               }) => (
                 <option value={classItem.id} key={classItem.id}>
-                  ({classItem.name} -{" "}
+                  ({classItem.name} - {" "}
                   {classItem._count.students + "/" + classItem.capacity}{" "}
                   Capacity)
                 </option>

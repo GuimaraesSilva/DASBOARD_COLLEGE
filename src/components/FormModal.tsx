@@ -81,7 +81,10 @@ const FormModal = ({ table, type, data, id, relatedData }: FormContainerProps & 
 
   return (
     <>
-      <button className={`${size} text-quinary flex items-center justify-center rounded-full ${bgColor}`} onClick={() => setOpen(true)}>
+      <button 
+        className={`${size} text-quinary flex items-center justify-center rounded-full ${bgColor}`} 
+        onClick={() => setOpen(true)}
+       >
         {type === "create" && <LuPlus size={16} />}
         {type === "update" && <LuPencil size={16} />}
         {type === "delete" && <LuTrash size={16} />}

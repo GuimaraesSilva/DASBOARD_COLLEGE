@@ -1,6 +1,6 @@
 "use server";
 
-//import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 import {
   ClassSchema,
   ExamSchema,
@@ -9,7 +9,7 @@ import {
   TeacherSchema,
 } from "./formValidationSchemas";
 import prisma from "./prisma";
-import { users } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 
 type CurrentState = { success: boolean; error: boolean };
 
@@ -142,12 +142,12 @@ export const createTeacher = async (
   data: TeacherSchema
 ) => {
   try {
-    const user = await clerk.users.createUser({
+    const user = await clerkClient.users.createUser({
       username: data.username,
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata: { role: "teacher" },
+      publicMetadata:{role:"teacher"}
     });
 
     await prisma.teacher.create({
@@ -187,7 +187,7 @@ export const updateTeacher = async (
     return { success: false, error: true };
   }
   try {
-    const user = await clerk.users.updateUser(data.id, {
+    const user = await clerkClient.users.updateUser(data.id, {
       username: data.username,
       ...(data.password !== "" && { password: data.password }),
       firstName: data.name,
@@ -231,7 +231,7 @@ export const deleteTeacher = async (
 ) => {
   const id = data.get("id") as string;
   try {
-    await clerk.users.deleteUser(id);
+    await clerkClient.users.deleteUser(id);
 
     await prisma.teacher.delete({
       where: {
@@ -262,12 +262,12 @@ export const createStudent = async (
       return { success: false, error: true };
     }
 
-    const user = await clerk.users.createUser({
+    const user = await clerkClient.users.createUser({
       username: data.username,
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata: { role: "student" },
+      publicMetadata:{role:"student"}
     });
 
     await prisma.student.create({
@@ -305,7 +305,7 @@ export const updateStudent = async (
     return { success: false, error: true };
   }
   try {
-    const user = await clerk.users.updateUser(data.id, {
+    const user = await clerkClient.users.updateUser(data.id, {
       username: data.username,
       ...(data.password !== "" && { password: data.password }),
       firstName: data.name,
@@ -347,7 +347,7 @@ export const deleteStudent = async (
 ) => {
   const id = data.get("id") as string;
   try {
-    await clerk.users.deleteUser(id);
+    await clerkClient.users.deleteUser(id);
 
     await prisma.student.delete({
       where: {
@@ -367,22 +367,22 @@ export const createExam = async (
   currentState: CurrentState,
   data: ExamSchema
 ) => {
-  // const { userId, sessionClaims } = auth();
-  // const role = (sessionClaims?.metadata as { role?: string })?.role;
+  const { userId, sessionClaims } = await auth();
+  const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   try {
-    // if (role === "teacher") {
-    //   const teacherLesson = await prisma.lesson.findFirst({
-    //     where: {
-    //       teacherId: userId!,
-    //       id: data.lessonId,
-    //     },
-    //   });
+    if (role === "teacher") {
+      const teacherLesson = await prisma.lesson.findFirst({
+        where: {
+          teacherId: userId!,
+          id: data.lessonId,
+        },
+      });
 
-    //   if (!teacherLesson) {
-    //     return { success: false, error: true };
-    //   }
-    // }
+      if (!teacherLesson) {
+        return { success: false, error: true };
+      }
+    }
 
     await prisma.exam.create({
       data: {
@@ -405,22 +405,22 @@ export const updateExam = async (
   currentState: CurrentState,
   data: ExamSchema
 ) => {
-  // const { userId, sessionClaims } = auth();
-  // const role = (sessionClaims?.metadata as { role?: string })?.role;
+  const { userId, sessionClaims } = auth();
+  const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   try {
-    // if (role === "teacher") {
-    //   const teacherLesson = await prisma.lesson.findFirst({
-    //     where: {
-    //       teacherId: userId!,
-    //       id: data.lessonId,
-    //     },
-    //   });
+    if (role === "teacher") {
+      const teacherLesson = await prisma.lesson.findFirst({
+        where: {
+          teacherId: userId!,
+          id: data.lessonId,
+        },
+      });
 
-    //   if (!teacherLesson) {
-    //     return { success: false, error: true };
-    //   }
-    // }
+      if (!teacherLesson) {
+        return { success: false, error: true };
+      }
+    }
 
     await prisma.exam.update({
       where: {
@@ -448,14 +448,14 @@ export const deleteExam = async (
 ) => {
   const id = data.get("id") as string;
 
-  // const { userId, sessionClaims } = auth();
-  // const role = (sessionClaims?.metadata as { role?: string })?.role;
+  const { userId, sessionClaims } = auth();
+  const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   try {
     await prisma.exam.delete({
       where: {
         id: parseInt(id),
-        // ...(role === "teacher" ? { lesson: { teacherId: userId! } } : {}),
+        ...(role === "teacher" ? { lesson: { teacherId: userId! } } : {}),
       },
     });
 
