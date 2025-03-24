@@ -22,7 +22,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { CldUploadWidget } from "next-cloudinary";
 
-
 const StudentForm = ({
   type,
   data,
@@ -182,7 +181,7 @@ const StudentForm = ({
             defaultValue={data?.id}
             register={register}
             error={errors?.id}
-            //hidden
+            hidden
           />
         )}
         <div className="flex flex-col gap-2 w-full md:w-1/4">
@@ -235,7 +234,7 @@ const StudentForm = ({
                 _count: { students: number };
               }) => (
                 <option value={classItem.id} key={classItem.id}>
-                  ({classItem.name} - {" "}
+                  ({classItem.name} -{" "}
                   {classItem._count.students + "/" + classItem.capacity}{" "}
                   Capacity)
                 </option>
