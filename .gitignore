@@ -41,3 +41,6 @@ dist/
 postgres-data/
 # clerk configuration (can include secrets)
 /.clerk/
+
+# file
+DB_CREDENCIALS.png

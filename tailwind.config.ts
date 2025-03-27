@@ -30,7 +30,15 @@ const config: Config = {
         septenary:"#f1f0ff",
         boys:"#295fb6",
         girls:"#a484bc",
-        others:"#fae27c "
+        others:"#fae27c",
+
+        lightyellow:"#D9C392",
+        yellow:"#DAA749",
+        darkyellow:"#997739",
+        lightgrey:"#717F88",
+        darkgrey:"#333B41",
+        black:"#121417",
+        text:"#ffffff",
       },
     },
   },
