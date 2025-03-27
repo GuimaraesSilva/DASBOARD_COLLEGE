@@ -2,6 +2,10 @@
 
 This project is a web application developed with **Next.js** and **TypeScript**, designed to manage academic information such as classes, teachers, students, assignments, and other data related to an educational institution. The application uses **Prisma** as an ORM to interact with the database and **Tailwind CSS** for styling.
 
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,prisma,docker,postgresql,nodejs" /><br/>
+</div>
+
 ## Project Structure
 
 Below is an overview of the project structure and main directories:
@@ -60,6 +64,11 @@ Below is an overview of the project structure and main directories:
    
 
 ## How to Run the Project
+
+<div align="left">
+    <img src="https://skillicons.dev/icons?i=npm" /><br/>
+</div>
+
 **1. Install dependencies**:
 
      npm install
@@ -109,6 +118,11 @@ Below is an overview of the project structure and main directories:
 # DASBOARD COLLEGE (PT)
 
 Este projeto é uma aplicação web desenvolvida com **Next.js** e **TypeScript**, projetada para gerenciar informações acadêmicas, como turmas, professores, alunos, tarefas e outros dados relacionados a uma instituição de ensino. A aplicação utiliza **Prisma** como ORM para interagir com o banco de dados e **Tailwind CSS** para estilização.
+
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,prisma,docker,postgresql,nodejs" /><br/>
+</div>
+
 
 ## Estrutura do Projeto
 
@@ -167,6 +181,11 @@ Abaixo está uma visão geral da estrutura do projeto e dos principais diretóri
 * **Docker**: Para containerização da aplicação.
 
 ## Como Executar o Projeto
+
+<div align="left">
+    <img src="https://skillicons.dev/icons?i=npm" /><br/>
+</div>
+
 
 **1. Instale as dependências**:
 
