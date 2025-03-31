@@ -36,6 +36,7 @@ const config: Config = {
         lightyellow:"#D9C392",
         yellow:"#DAA749",
         darkyellow:"#997739",
+        extralightgrey:"#f8f8f8",
         lightgrey:"#717F88",
         darkgrey:"#333B41",
         black:"#121417",

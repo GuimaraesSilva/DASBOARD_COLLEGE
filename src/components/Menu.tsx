@@ -140,10 +140,10 @@ const Menu = async () => {
   const user = await currentUser();
   const role = user?.publicMetadata.role as string;
   return (
-    <div className="mt-2 text-sm">
+    <div className="m-2 text-sm border-r border-lightgrey/50 text-darkyellow dark:border-darkgrey/50">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-1" key={i.title}>
-          <span className="hidden lg:block text-white font-light my-4">
+          <span className="hidden lg:block text-darkyellow font-light my-4">
             {i.title}
           </span>
           {i.items.map((item) => {
@@ -152,7 +152,7 @@ const Menu = async () => {
                 <Link
                   href={item.href}
                   key={item.label}
-                  className="flex items-center justify-center lg:justify-start gap-4 text-white/60 py-2 md:px-2 rounded-md hover:bg-tertiary hover:text-primary"
+                  className="flex items-center justify-center lg:justify-start gap-4 text-darkyellow/80 py-2 md:px-2 rounded-md hover:bg-lightgrey/50 hover:text-black dark:hover:bg-lightyellow dark:hover:text-black"
                 >
                   <item.icon size={20} /> 
                   <span className="hidden lg:block">{item.label}</span>
