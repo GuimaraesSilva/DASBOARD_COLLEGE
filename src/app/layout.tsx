@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, Nunito, Quicksand } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,10 +30,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={quicksand.className}>
-          <div className={quicksand.className}>
-            {children}
-          </div>
-          <ToastContainer position="bottom-right" theme="dark" />
+          <div className={quicksand.className}>{children}</div>
         </body>
       </html>
     </ClerkProvider>
