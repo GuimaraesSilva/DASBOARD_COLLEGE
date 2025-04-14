@@ -1,6 +1,8 @@
 import Image from "next/image";
 import CountChart from "./CountChart";
 import prisma from "@/lib/prisma";
+import { TfiMoreAlt } from "react-icons/tfi";
+import { FaCircle } from "react-icons/fa";
 
 const CountChartContainer = async () => {
   const data = await prisma.student.groupBy({
@@ -12,28 +14,36 @@ const CountChartContainer = async () => {
   const girls = data.find((d) => d.sex === "FEMALE")?._count || 0;
 
   return (
-    <div className="bg-white rounded-xl w-full h-full p-4">
+    <div className="rounded-xl w-full h-full p-4 bg-seclightyellow dark:bg-darkgrey">
       {/* TITLE */}
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Students</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+        <h1 className="capitalize text-md font-medium text-gray-500 dark:text-lightyellow">
+          Students
+        </h1>
+        <TfiMoreAlt className="text-darkgrey/75 dark:text-yellow cursor-pointer" />
       </div>
       {/* CHART */}
       <CountChart boys={boys} girls={girls} />
       {/* BOTTOM */}
-      <div className="flex justify-center gap-16">
-        <div className="flex flex-col gap-1">
-          <div className="w-5 h-5 bg-lamaSky rounded-full" />
-          <h1 className="font-bold">{boys}</h1>
-          <h2 className="text-xs text-gray-300">
-            Boys ({Math.round((boys / (boys + girls)) * 100)}%)
+      <div className="flex justify-center gap-4">
+        <div className="flex items-center gap-1">
+          <FaCircle className="text-2xl text-boys" />
+          <h1 className="font-bold text-gray-500 dark:text-lightyellow">
+            {boys}
+          </h1>
+          <h2 className="text-xs text-darkgrey/75 dark:text-yellow">Boys</h2>
+          <h2 className="text-xs text-darkgrey/75 dark:text-yellow">
+            ({Math.round((boys / (boys + girls)) * 100)}%)
           </h2>
         </div>
-        <div className="flex flex-col gap-1">
-          <div className="w-5 h-5 bg-lamaYellow rounded-full" />
-          <h1 className="font-bold">{girls}</h1>
-          <h2 className="text-xs text-gray-300">
-            Girls ({Math.round((girls / (boys + girls)) * 100)}%)
+        <div className="flex items-center gap-1">
+          <FaCircle className="text-2xl text-girls" />
+          <h1 className="font-bold text-gray-500 dark:text-lightyellow">
+            {girls}
+          </h1>
+          <h2 className="text-xs text-darkgrey/75 dark:text-yellow">Girls</h2>
+          <h2 className="text-xs text-darkgrey/75 dark:text-yellow">
+            ({Math.round((girls / (boys + girls)) * 100)}%)
           </h2>
         </div>
       </div>
