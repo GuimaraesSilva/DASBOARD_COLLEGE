@@ -147,7 +147,7 @@ export const createTeacher = async (
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata:{role:"teacher"}
+      publicMetadata: { role: "teacher" },
     });
 
     await prisma.teacher.create({
@@ -180,9 +180,10 @@ export const createTeacher = async (
 };
 
 export const updateTeacher = async (
-  cu{
-rrentState: CurrentState,
-  data: T(!dat}a.id) {
+  currentState: CurrentState,
+  data: TeacherSchema
+) => {
+  if (!data.id) {
     return { success: false, error: true };
   }
   try {
@@ -190,12 +191,9 @@ rrentState: CurrentState,
       username: data.username,
       ...(data.password !== "" && { password: data.password }),
       firstName: data.name,
-      l
-stName: dat,
-.surname,
+      lastName: data.surname,
     });
 
-...(data.password !== "" && { password: data.password }),
     await prisma.teacher.update({
       where: {
         id: data.id,
@@ -269,7 +267,7 @@ export const createStudent = async (
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata:{role:"student"}
+      publicMetadata: { role: "student" },
     });
 
     await prisma.student.create({

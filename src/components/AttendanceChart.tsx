@@ -46,71 +46,73 @@ const AttendanceChart = ({
   }, [theme, resolvedTheme, mounted]);
 
   if (!mounted) {
-    return (
-      <div className="w-full h-full bg-seclightyellow dark:bg-darkgrey"></div>
-    );
+    return <div className="w-full h-full" />;
   }
 
   return (
-    <ResponsiveContainer width="100%" height="90%">
-      <BarChart
-        width={500}
-        height={350}
-        data={data}
-        barSize={10}
-        margin={{
-          top: 5,
-          right: 5,
-          left: 5,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid
-          strokeDasharray="3 3"
-          vertical={false}
-          stroke={colors.gridStroke}
-        />
-        <XAxis
-          dataKey="name"
-          axisLine={false}
-          tick={{ fill: colors.tickFill }}
-          tickLine={false}
-        />
-        <YAxis
-          axisLine={false}
-          tick={{ fill: colors.tickFill }}
-          tickLine={false}
-        />
-        <Tooltip
-          contentStyle={{
-            borderRadius: "10px",
-            borderColor: "black",
-            backgroundColor: theme === "dark" ? "#333B41" : "#ffffff",
-          }}
-          labelStyle={{ color: theme === "dark" ? "#F2F4F6" : "#333B41" }}
-        />
-        <Legend
-          align="right"
-          verticalAlign="top"
-          wrapperStyle={{ paddingTop: "10px", paddingBottom: "20px" }}
-          formatter={(value) => (
-            <span style={{ color: colors.tickFill }}>{value}</span>
-          )}
-        />
-        <Bar
-          dataKey="present"
-          fill={colors.presentBar}
-          legendType="circle"
-          radius={[10, 10, 0, 0]}
-        />
-        <Bar
-          dataKey="absent"
-          fill={colors.absentBar}
-          legendType="circle"
-          radius={[10, 10, 0, 0]}
-        />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={data}
+          barSize={15}
+          margin={{ top: 5, right: 5, left: -25, bottom: 5 }}
+        >
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={false}
+            stroke={colors.gridStroke}
+          />
+          <XAxis
+            dataKey="name"
+            axisLine={false}
+            tick={{ fill: colors.tickFill, fontSize: 12 }}
+            tickLine={false}
+            dy={5}
+          />
+          <YAxis
+            axisLine={false}
+            tick={{ fill: colors.tickFill, fontSize: 12 }}
+            tickLine={false}
+            dx={-5}
+          />
+          <Tooltip
+            contentStyle={{
+              borderRadius: "5px",
+              borderColor: "transparent",
+              backgroundColor: theme === "dark" ? "#333B41" : "#ffffff",
+              padding: "5px 8px",
+              fontSize: "12px",
+            }}
+            labelStyle={{ color: theme === "dark" ? "#F2F4F6" : "#333B41" }}
+          />
+          <Legend
+            align="right"
+            verticalAlign="top"
+            iconSize={8}
+            wrapperStyle={{
+              paddingTop: "5px",
+              paddingBottom: "8px",
+              fontSize: "14px",
+            }}
+            formatter={(value) => (
+              <span style={{ color: colors.tickFill }}>{value}</span>
+            )}
+          />
+          <Bar
+            dataKey="present"
+            fill={colors.presentBar}
+            legendType="circle"
+            radius={[5, 5, 0, 0]}
+          />
+          <Bar
+            dataKey="absent"
+            fill={colors.absentBar}
+            legendType="circle"
+            radius={[8, 8, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

@@ -27,7 +27,7 @@ const CountChartContainer = async () => {
       {/* BOTTOM */}
       <div className="flex justify-center gap-4">
         <div className="flex items-center gap-1">
-          <FaCircle className="text-2xl text-boys" />
+          <FaCircle className="text-lg text-boys" />
           <h1 className="font-bold text-gray-500 dark:text-lightyellow">
             {boys}
           </h1>
@@ -37,7 +37,7 @@ const CountChartContainer = async () => {
           </h2>
         </div>
         <div className="flex items-center gap-1">
-          <FaCircle className="text-2xl text-girls" />
+          <FaCircle className="text-lg text-girls" />
           <h1 className="font-bold text-gray-500 dark:text-lightyellow">
             {girls}
           </h1>

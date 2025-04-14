@@ -70,14 +70,16 @@ const AttendanceChartContainer = async ({
   }));
 
   return (
-    <div className="bg-seclightyellow dark:bg-darkgrey rounded-lg p-4 h-full">
+    <div className="bg-seclightyellow dark:bg-darkgrey rounded-xl p-4 h-full flex flex-col">
       <div className="flex justify-between items-center">
         <h1 className="capitalize text-md font-medium text-gray-500 dark:text-lightyellow">
           Attendance
         </h1>
         <TfiMoreAlt className="text-darkgrey/75 dark:text-yellow cursor-pointer" />
       </div>
-      <AttendanceChart data={data} />
+      <div className="flex-1 w-full">
+        <AttendanceChart data={data} />
+      </div>
     </div>
   );
 };
