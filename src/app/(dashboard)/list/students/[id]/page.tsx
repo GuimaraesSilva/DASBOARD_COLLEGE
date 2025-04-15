@@ -13,8 +13,10 @@ import { Suspense } from "react";
 
 const SingleStudentPage = async ({
   params: { id },
+  searchParams,
 }: {
   params: { id: string };
+  searchParams?: { date?: string };
 }) => {
   const { sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
@@ -151,7 +153,12 @@ const SingleStudentPage = async ({
         {/* BOTTOM */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1>Student&apos;s Schedule</h1>
-          <BigCalendarContainer type="classId" id={student.class.id} />
+          <BigCalendarContainer
+            type="classId"
+            id={student.class.id}
+            dateParam={searchParams?.date}
+            className="h-[700px]"
+          />
         </div>
       </div>
       {/* RIGHT */}

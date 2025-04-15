@@ -66,8 +66,8 @@ const LoginPage = () => {
         <SignIn.Root>
           <SignIn.Step
             name="start"
-            className="z-10 bg-lightgrey/60 dark:bg-darkgrey/60 p-8 md:p-12 rounded-xl shadow-2xl 
-              shadow-[0px_0px_80px_10px_rgba(0,0,0,0.6)] flex flex-col gap-6"
+            className="z-10 bg-darkyellow/80 dark:bg-darkgrey/60 p-8 md:p-12 rounded-xl shadow-2xl 
+              shadow-[0px_0px_100px_5px_rgba(0,0,0,0.4)] flex flex-col gap-6"
           >
             <h1 className="text-2xl md:text-3xl font-bold flex justify-center items-center">
               Welcome back!

@@ -11,8 +11,10 @@ import { notFound } from "next/navigation";
 
 const SingleTeacherPage = async ({
   params: { id },
+  searchParams,
 }: {
   params: { id: string };
+  searchParams?: { date?: string };
 }) => {
   const { sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
@@ -157,7 +159,12 @@ const SingleTeacherPage = async ({
         {/* BOTTOM */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1>Teacher&apos;s Schedule</h1>
-          <BigCalendarContainer type="teacherId" id={teacher.id} />
+          <BigCalendarContainer
+            type="teacherId"
+            id={teacher.id}
+            dateParam={searchParams?.date}
+            className="h-[700px]"
+          />
         </div>
       </div>
       {/* RIGHT */}
@@ -165,7 +172,7 @@ const SingleTeacherPage = async ({
         <div className="bg-white p-4 rounded-md">
           <h1 className="text-xl font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
-           <Link
+            <Link
               className="p-3 rounded-md bg-lamaSkyLight"
               href={`/list/classes?supervisorId=${teacher.id}`}
             >

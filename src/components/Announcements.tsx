@@ -92,7 +92,7 @@ const Announcements = async ({ dateParam }: { dateParam?: string }) => {
             )}
           </>
         ) : (
-          <p className="text-sm text-extralightgrey text-center py-4">
+          <p className="text-sm text-lightgrey dark:text-lightyellow text-center py-4">
             No announcements available.
           </p>
         )}

@@ -22,7 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${inter.className} bg-yellow dark:bg-darkyellow text-black text-white`}
+          className={`${inter.className} bg-extralightyellow dark:bg-black text-black text-white`}
         >
           <ThemeProviderWrapper>
             {children}

@@ -26,15 +26,15 @@ const EventCalendar = () => {
     <div className="overflow-hidden">
       <Calendar
         className="custom-calendar border-none text-darkgrey dark:text-lightyellow"
-        style={{
-          backgroundColor: isDark ? "#717F88" : "#D9C392",
-        }}
         onChange={onChange}
         value={value}
         tileClassName={({ date, view }) => {
           const isCurrentMonth =
-            date.getMonth() === value instanceof Date
-              ? value.getMonth()
+            date.getMonth() ===
+            (value instanceof Date ? value.getMonth() : new Date().getMonth())
+              ? value instanceof Date
+                ? value.getMonth()
+                : new Date().getMonth()
               : new Date().getMonth();
 
           if (view === "month") {

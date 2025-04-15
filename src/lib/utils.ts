@@ -43,3 +43,66 @@ export const adjustScheduleToCurrentWeek = (
     };
   });
 };
+
+export const adjustScheduleToSelectedWeek = (
+  lessons: { title: string; start: Date; end: Date }[],
+  selectedDate: Date
+): { title: string; start: Date; end: Date }[] => {
+  if (!lessons || lessons.length === 0) {
+    return [];
+  }
+
+  const selectedDateObj = new Date(selectedDate);
+
+  const startOfWeek = new Date(selectedDateObj);
+  const day = selectedDateObj.getDay() || 7;
+  if (day !== 1) {
+    startOfWeek.setDate(selectedDateObj.getDate() - (day - 1));
+  }
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  return lessons.map((lesson) => {
+    const originalStart = new Date(lesson.start);
+    const originalEnd = new Date(lesson.end);
+
+    const lessonStartHour = originalStart.getHours();
+    const lessonStartMinute = originalStart.getMinutes();
+    const lessonStartSecond = originalStart.getSeconds();
+    const lessonStartMs = originalStart.getMilliseconds();
+
+    const lessonEndHour = originalEnd.getHours();
+    const lessonEndMinute = originalEnd.getMinutes();
+    const lessonEndSecond = originalEnd.getSeconds();
+    const lessonEndMs = originalEnd.getMilliseconds();
+
+    const lessonDayOfWeek = originalStart.getDay();
+
+    const newStart = new Date(startOfWeek);
+    newStart.setDate(
+      startOfWeek.getDate() + (lessonDayOfWeek === 0 ? 6 : lessonDayOfWeek - 1)
+    );
+    newStart.setHours(
+      lessonStartHour,
+      lessonStartMinute,
+      lessonStartSecond,
+      lessonStartMs
+    );
+
+    const newEnd = new Date(startOfWeek);
+    newEnd.setDate(
+      startOfWeek.getDate() + (lessonDayOfWeek === 0 ? 6 : lessonDayOfWeek - 1)
+    );
+    newEnd.setHours(
+      lessonEndHour,
+      lessonEndMinute,
+      lessonEndSecond,
+      lessonEndMs
+    );
+
+    return {
+      title: lesson.title,
+      start: newStart,
+      end: newEnd,
+    };
+  });
+};
