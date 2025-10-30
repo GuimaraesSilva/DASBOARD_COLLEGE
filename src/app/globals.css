@@ -313,3 +313,34 @@
   font-size: 10px !important;
   font-weight: bold !important;
 }
+
+/* ADD: group hover styles so a row appears as one rounded box */
+table.border-separate {
+  border-collapse: separate;
+}
+
+/* pinta todas as células quando o tr com classe group está em hover */
+/* Light mode (default) */
+tr.group:hover td {
+  /* usa um tom mais suave para light mode */
+  background-color: rgba(86, 56, 0, 0.12);
+  transition: background-color 0.15s ease;
+}
+
+/* Dark mode */
+.dark tr.group:hover td {
+  background-color: rgba(217, 195, 146, 0.15); /* cor para dark mode */
+  transition: background-color 0.15s ease;
+}
+
+/* aplica border-radius apenas nas extremidades (primeira e última célula) */
+tr.group:hover td:first-child {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  overflow: hidden;
+}
+tr.group:hover td:last-child {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
+}
